@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.ts"
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node dist/index.json"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +29,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/jsonwebtoken": "^9.0.10",
-    "nodemon": "^3.1.11",
+    "nodemon": "^3.1.13",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

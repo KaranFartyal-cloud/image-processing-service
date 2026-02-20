@@ -35,4 +35,6 @@ router.route("/get-posts").get(async (req, res) => {
   }
 });
 
+
+
 export default router;

@@ -8,7 +8,12 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+const port = 5000;
 app.use(express.json());
 
 const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:5173"];
@@ -26,7 +31,11 @@ app.use(
 
 await checkConnection();
 
-app.use("/api/user/", userRoutes);
+app.use("/api/user", userRoutes);
+
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 app.use(errorHandler);
 
