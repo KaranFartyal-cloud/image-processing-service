@@ -6,7 +6,7 @@ export const BackendUrlProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const url = import.meta.env.VITE_BASE_URL || "http://localhost:3000";
+  const url = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
   return (
     <BackendUrlContext.Provider value={{ url }}>

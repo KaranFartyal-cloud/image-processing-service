@@ -1,3 +1,5 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -163,7 +165,7 @@
 }
 
 .text-normal {
-  @apply text-sm dark:text-white text-blue-400 hover:text-gray-800;
+  @apply text-sm dark:text-white  hover:text-gray-800;
 }
 
 .flex-center {

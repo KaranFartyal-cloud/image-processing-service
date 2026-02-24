@@ -5,6 +5,8 @@ import axios from "axios";
 import { useBackendUrl } from "@/hooks/useBackendUrl";
 import { useLoading } from "@/hooks/useLoading";
 import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "../ui/button";
 
 type loginInput = {
   email: string;
@@ -25,6 +27,8 @@ const Login: React.FC = () => {
     try {
       startLoading();
 
+      console.log(`${url}/api/user/login`);
+
       const res = await axios.post(
         `${url}/api/user/login`,
         {
@@ -40,15 +44,18 @@ const Login: React.FC = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data);
-         toast.error(error.response?.data.message)
+        toast.error(error.response?.data.message);
       }
-
-     
 
       console.log("unexpected error", error);
     } finally {
       stopLoading();
     }
+  };
+
+  const handleGoogle = async () => {
+    console.log("inside");
+    window.location.href = `${url}/google`;
   };
 
   return (
@@ -146,6 +153,16 @@ const Login: React.FC = () => {
             </button>
           )}
         </form>
+
+        <div className="flex  w-full flex-col items-center  py-2 ">
+          <span className="text-normal">or</span>
+
+          <Separator className="bg-gray-300 my-2" />
+
+          <Button className="w-full" onClick={handleGoogle}>
+            <i className="fa-brands fa-google"></i>Sign in with google
+          </Button>
+        </div>
 
         {/* Sign up Link */}
         <div className="mt-6 text-green-500 dark:text-blue-500 text-center">
