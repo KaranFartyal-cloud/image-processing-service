@@ -1,13 +1,10 @@
 import express from "express";
-import { login, registerUser } from "../controllers/user.controller.ts";
-import { authLimiter } from "../middlewares/rateLimiters/authRateLimiter.ts";
+
 import { redis } from "../utils/redisClient.ts";
 
 
 const router = express.Router();
 
-router.route("/login").post(authLimiter, login);
-router.route("/register").post(registerUser);
 router.route("/get-posts").get(async (req, res) => {
   try {
     const cachedTodos = await redis.get("todos");
@@ -34,7 +31,5 @@ router.route("/get-posts").get(async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 });
-
-
 
 export default router;

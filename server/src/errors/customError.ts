@@ -3,7 +3,7 @@ class ApiError extends Error {
   public code: string;
   public isOperational: boolean;
 
-  constructor(message : string, statusCode : number = 500, code = "API_ERROR") {
+  constructor(message: string, statusCode: number = 500, code = "API_ERROR") {
     super(message);
 
     this.name = this.constructor.name;
@@ -30,6 +30,16 @@ export class RedisError extends ApiError {
     message = "Redis service unavailable",
     statusCode = 503,
     code = "REDIS_ERROR",
+  ) {
+    super(message, statusCode, code);
+  }
+}
+
+export class OauthError extends ApiError {
+  constructor(
+    message = "OAuth failed",
+    statusCode = 401,
+    code = "OAUTH_ERROR",
   ) {
     super(message, statusCode, code);
   }

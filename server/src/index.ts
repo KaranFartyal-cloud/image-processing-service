@@ -3,17 +3,16 @@ import dotenv from "dotenv";
 import { checkConnection } from "./config/db.ts";
 import userRoutes from "./routes/user.routes.ts";
 import errorHandler from "./middlewares/error.handler.ts";
+import authRoutes from "./routes/auth.routes.ts";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
-
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
-
 const port = 5000;
+
+app.use(cookieParser());
 app.use(express.json());
 
 const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:5173"];
@@ -29,13 +28,14 @@ app.use(
   }),
 );
 
+app.get("/", (req, res) => {
+  res.send("hello nigga");
+});
+
 await checkConnection();
 
-app.use("/api/user", userRoutes);
-
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+app.use("/api/user/", userRoutes);
+app.use("/", authRoutes);
 
 app.use(errorHandler);
 

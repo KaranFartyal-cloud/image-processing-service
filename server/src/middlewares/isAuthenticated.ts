@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
 import { AuthError } from "../errors/customError.ts";
-import { NextFunction, Request, Response } from "express";
-import { JwtPayloadWithUserId } from "../types/jwt_types.ts";
+import type { NextFunction, Request, Response } from "express";
+import type { JwtPayloadWithUserId } from "../types/jwt_types.ts";
 import asyncHandler from "../utils/asyncHandler.ts";
 
 export const isAuthenticated = asyncHandler(
